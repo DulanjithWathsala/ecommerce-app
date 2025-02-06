@@ -15,7 +15,6 @@ export default function Modal({ open, onCloseModal, product }) {
             transition
             className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl"
           >
-            {/* Modal Header */}
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
                 <div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:size-10">
@@ -27,7 +26,6 @@ export default function Modal({ open, onCloseModal, product }) {
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                   <div className="mt-2">
                     <div className="p-4 flex flex-col flex-grow">
-                      {/* Product Image */}
                       <div className="w-full h-64 flex items-center justify-center bg-gray-100 rounded-lg">
                         <img
                           src={product.image}
@@ -36,7 +34,6 @@ export default function Modal({ open, onCloseModal, product }) {
                         />
                       </div>
 
-                      {/* Product Details */}
                       <h3 className="text-xl font-semibold text-gray-900 mt-4">
                         {product.title}
                       </h3>
@@ -58,9 +55,8 @@ export default function Modal({ open, onCloseModal, product }) {
               </div>
             </div>
 
-            {/* Modal Footer */}
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition ms-2">
+              <button className="mt-3 inline-flex w-full text-white justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-indigo-700 sm:mt-0 sm:w-auto ms-2">
                 Add to Cart
               </button>
               <button
