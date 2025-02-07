@@ -4,6 +4,7 @@ import { CartContext } from "./CartContext.js";
 function shoppingCartReducer(state, action) {
   if (action.type === "ADD_ITEM") {
     const updatedItems = [...state.items];
+    console.log(updatedItems);
 
     const existingCartItemIndex = updatedItems.findIndex(
       (cartItem) => cartItem.id === action.payload.id

@@ -43,7 +43,6 @@ export default function Products() {
         setIsFetched(false);
         setError(null);
         const data = await fetchProductsByCategory(category);
-        console.log(data);
         setProducts(data);
       } catch (error) {
         console.error(error);
@@ -104,11 +103,7 @@ export default function Products() {
           {products.map((product) => (
             <ProductCard
               key={product.id}
-              title={product.title}
-              img={product.image}
-              description={product.description}
-              price={product.price}
-              category={product.category}
+              product={product}
               onViewProduct={() => {
                 setSelectedProduct(product);
                 setOpen(true);
