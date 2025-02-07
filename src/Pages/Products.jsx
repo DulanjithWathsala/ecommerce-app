@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/ProductCard.jsx";
 import { fetchAllProducts, fetchProductsByCategory } from "../services/api.js";
 import Modal from "./Modal.jsx";
 
