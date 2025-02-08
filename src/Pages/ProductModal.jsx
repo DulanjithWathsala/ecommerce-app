@@ -1,9 +1,13 @@
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { useContext } from "react";
+import { CartContext } from "../store/CartContext.js";
 
-export default function Modal({ open, onCloseModal, product }) {
+export default function ProductModal({ open, onCloseModal, product }) {
+  const { addItemToCart } = useContext(CartContext);
+
   return (
-    <Dialog open={open} onClose={onCloseModal} className="relative z-10">
+    <Dialog open={open} onClose={onCloseModal} className="relative z-50">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
@@ -56,7 +60,12 @@ export default function Modal({ open, onCloseModal, product }) {
             </div>
 
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button className="mt-3 inline-flex w-full text-white justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-indigo-700 sm:mt-0 sm:w-auto ms-2">
+              <button
+                className="mt-3 inline-flex w-full text-white justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-indigo-700 sm:mt-0 sm:w-auto ms-2"
+                onClick={() =>
+                  addItemToCart(product.id, product.title, product.price)
+                }
+              >
                 Add to Cart
               </button>
               <button
