@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/ProductCard.jsx";
 import { fetchAllProducts, fetchProductsByCategory } from "../services/api.js";
-import Modal from "./Modal.jsx";
+import ProductModal from "./ProductModal.jsx";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -43,7 +43,6 @@ export default function Products() {
         setIsFetched(false);
         setError(null);
         const data = await fetchProductsByCategory(category);
-        console.log(data);
         setProducts(data);
       } catch (error) {
         console.error(error);
@@ -96,7 +95,11 @@ export default function Products() {
       )}
 
       {open && (
-        <Modal open product={selectedProduct} onCloseModal={onCloseModal} />
+        <ProductModal
+          open
+          product={selectedProduct}
+          onCloseModal={onCloseModal}
+        />
       )}
 
       {!error && isFetched && products.length > 0 && (
@@ -104,11 +107,7 @@ export default function Products() {
           {products.map((product) => (
             <ProductCard
               key={product.id}
-              title={product.title}
-              img={product.image}
-              description={product.description}
-              price={product.price}
-              category={product.category}
+              product={product}
               onViewProduct={() => {
                 setSelectedProduct(product);
                 setOpen(true);

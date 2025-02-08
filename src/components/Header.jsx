@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../store/CartContext.js";
+
 import {
   Dialog,
   DialogPanel,
@@ -24,7 +27,6 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
 
 const products = [
   {
@@ -64,10 +66,13 @@ const callsToAction = [
 ];
 
 export default function Header() {
+  const { items } = useContext(CartContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const cartQty = items.length;
+
   return (
-    <header className="bg-white">
+    <header className="bg-white sticky top-0 z-50 w-full">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -75,11 +80,7 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">ShopMate</span>
-            <img
-              alt="ShopMate Logo"
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto"
-            />
+            <img alt="ShopMate Logo" src="vite.svg" className="h-8 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -149,9 +150,12 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          <Link
+            to="/products"
+            className="text-sm/6 font-semibold text-gray-900"
+          >
             Categories
-          </a>
+          </Link>
           <a href="#" className="text-sm/6 font-semibold text-gray-900">
             Deals
           </a>
@@ -160,9 +164,9 @@ export default function Header() {
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            Cart <span aria-hidden="true">&rarr;</span>
-          </a>
+          <Link to="/cart" className="text-sm/6 font-semibold text-gray-900">
+            Cart ({cartQty}) <span aria-hidden="true">&rarr;</span>
+          </Link>
         </div>
       </nav>
       <Dialog
@@ -214,12 +218,12 @@ export default function Header() {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                <a
-                  href="#"
+                <Link
+                  to="/products"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   Categories
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
@@ -234,12 +238,12 @@ export default function Header() {
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
+                <Link
+                  to="/cart"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  Cart
-                </a>
+                  Cart ({cartQty}){" "}
+                </Link>
               </div>
             </div>
           </div>
