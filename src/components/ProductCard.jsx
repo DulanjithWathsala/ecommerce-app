@@ -1,27 +1,16 @@
 import { useContext } from "react";
-import { HiOutlineEye } from "react-icons/hi";
 import { CartContext } from "../store/CartContext.js";
-import { Bounce, toast } from "react-toastify";
+
+import { HiOutlineEye } from "react-icons/hi";
+
+import { notify } from "../utils/CartNotify.js";
 
 export default function ProductCard({ product, onViewProduct }) {
   const { addItemToCart } = useContext(CartContext);
 
-  const notify = () =>
-    toast.success(`Item: 🛒 ${product.title} added to cart!`, {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-    });
-
   function handleAddToCartOnClick() {
     addItemToCart(product.id, product.title, product.price);
-    notify();
+    notify(product);
   }
 
   return (
