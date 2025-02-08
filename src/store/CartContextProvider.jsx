@@ -32,6 +32,32 @@ function shoppingCartReducer(state, action) {
       items: updatedItems,
     };
   }
+
+  if (action.type === "UPDATE_ITEM") {
+    const updatedItems = [...state.items];
+    const updatedItemIndex = updatedItems.findIndex(
+      (item) => item.id === action.payload.id
+    );
+
+    const currentUpdatedItem = {
+      ...updatedItems[updatedItemIndex],
+    };
+
+    currentUpdatedItem.quantity += action.payload.amount;
+
+    if (currentUpdatedItem.quantity <= 0) {
+      updatedItems.splice(updatedItemIndex, 1);
+    } else {
+      updatedItems[updatedItemIndex] = currentUpdatedItem;
+    }
+
+    return {
+      ...state,
+      items: updatedItems,
+    };
+  }
+
+  return state;
 }
 
 export default function CartContextProvider({ children }) {
@@ -53,9 +79,20 @@ export default function CartContextProvider({ children }) {
     });
   }
 
+  function handleUpdateCartItemQuantity(id, amount) {
+    shoppingCartDispatch({
+      type: "UPDATE_ITEM",
+      payload: {
+        id,
+        amount,
+      },
+    });
+  }
+
   const ctxValue = {
     items: shoppingCartState.items,
     addItemToCart: handleAddItemToCart,
+    updateItemQuantity: handleUpdateCartItemQuantity,
   };
 
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard.jsx";
 import { fetchAllProducts, fetchProductsByCategory } from "../services/api.js";
-import Modal from "./Modal.jsx";
+import ProductModal from "./ProductModal.jsx";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -95,7 +95,11 @@ export default function Products() {
       )}
 
       {open && (
-        <Modal open product={selectedProduct} onCloseModal={onCloseModal} />
+        <ProductModal
+          open
+          product={selectedProduct}
+          onCloseModal={onCloseModal}
+        />
       )}
 
       {!error && isFetched && products.length > 0 && (
