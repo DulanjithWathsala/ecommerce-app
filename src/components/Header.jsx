@@ -150,9 +150,12 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          <Link
+            to="/products"
+            className="text-sm/6 font-semibold text-gray-900"
+          >
             Categories
-          </a>
+          </Link>
           <a href="#" className="text-sm/6 font-semibold text-gray-900">
             Deals
           </a>
@@ -215,12 +218,12 @@ export default function Header() {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                <a
-                  href="#"
+                <Link
+                  to="/products"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   Categories
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"

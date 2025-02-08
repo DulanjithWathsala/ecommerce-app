@@ -28,7 +28,10 @@ export default function Home() {
             >
               Start Shopping
             </Link>
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
+            <a
+              href="#"
+              className="rounded-md border border-gray-500 px-4 py-2 text-sm font-semibold text-gray-900 shadow-xs hover:ring-gray-900/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 inline-flex items-center"
+            >
               Learn more <span aria-hidden="true">→</span>
             </a>
           </div>
