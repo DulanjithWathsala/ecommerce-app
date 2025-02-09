@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { CartContext } from "../store/CartContext";
 
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
+
 export default function Cart() {
   const { items, updateItemQuantity } = useContext(CartContext);
 
@@ -40,7 +42,7 @@ export default function Cart() {
                     onClick={() => updateItemQuantity(item.id, -1)}
                     className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-lg hover:bg-red-600"
                   >
-                    -
+                    <MinusIcon className="w-5 h-5 text-white" />
                   </button>
                   <span className="text-lg font-medium text-gray-900">
                     {item.quantity}
@@ -49,7 +51,7 @@ export default function Cart() {
                     onClick={() => updateItemQuantity(item.id, 1)}
                     className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-lg hover:bg-green-600"
                   >
-                    +
+                    <PlusIcon className="w-5 h-5 text-white" />
                   </button>
                 </div>
               </li>

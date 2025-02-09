@@ -1,9 +1,17 @@
 import { useContext } from "react";
-import { HiOutlineEye } from "react-icons/hi";
 import { CartContext } from "../store/CartContext.js";
+
+import { HiOutlineEye } from "react-icons/hi";
+
+import { notify } from "../utils/CartNotify.js";
 
 export default function ProductCard({ product, onViewProduct }) {
   const { addItemToCart } = useContext(CartContext);
+
+  function handleAddToCartOnClick() {
+    addItemToCart(product.id, product.title, product.price);
+    notify(product);
+  }
 
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow p-4 flex flex-col h-full">
@@ -36,9 +44,7 @@ export default function ProductCard({ product, onViewProduct }) {
           </span>
           <button
             className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
-            onClick={() =>
-              addItemToCart(product.id, product.title, product.price)
-            }
+            onClick={handleAddToCartOnClick}
           >
             Add to Cart
           </button>
